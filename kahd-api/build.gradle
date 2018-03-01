@@ -1,21 +1,28 @@
 group 'com.milesjpool'
-version '1.0-SNAPSHOT'
+version '0.1.0'
+
 
 buildscript {
-    ext.kotlin_version = '1.2.21'
+    ext.kotlin_version = '1.2.10'
     ext.ktor_version = '0.9.1'
 
 
     repositories {
         mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:2.0.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
+apply plugin: "com.github.johnrengelman.shadow"
+apply plugin: 'application'
+
+mainClassName = 'com.milesjpool.kahd.api.ApplicationKt'
 
 sourceCompatibility = 1.8
 compileKotlin {
@@ -29,6 +36,12 @@ kotlin {
     experimental {
         coroutines "enable"
     }
+}
+
+shadowJar {
+    baseName = 'kahd-api'
+    classifier = null
+    version = null
 }
 
 repositories {
