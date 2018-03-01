@@ -6,7 +6,6 @@
 # IntelliJ
 
 *.iml
-
 .idea
 
 
@@ -14,3 +13,4 @@
 
 .gradle
 build/
+out/
