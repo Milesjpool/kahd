@@ -4,6 +4,7 @@ Card games API
 ## Requirements
 
 * [Google Cloud SDK]
+  *  Kubektl: `gcloud components install kubectl`
 * [Docker]
 
 ## Setup
@@ -14,6 +15,10 @@ Card games API
 ## Building the project
 
 1. From the repository root, run `make build-api`
+
+## Pushing the project
+
+1. From the repository root, run `make push-api`
 
 [Google Cloud SDK]: https://cloud.google.com/sdk/docs/
 [Docker]: https://docs.docker.com/install/
