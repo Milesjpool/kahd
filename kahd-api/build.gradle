@@ -1,5 +1,5 @@
 group 'com.milesjpool'
-version '0.1.0'
+version rootProject.file('VERSION').text
 
 
 buildscript {
