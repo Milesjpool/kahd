@@ -1,7 +1,8 @@
 [![Build Status](https://travis-ci.org/Milesjpool/kahd.svg?branch=master)](https://travis-ci.org/Milesjpool/kahd)
 
 # kahd
-Card games API
+Open-source card games web-service including:
+* Kahd-API (WIP)
 
 ## Requirements
 
@@ -23,6 +24,13 @@ Card games API
 1. Increment the API version in `kahd-api/VERSION`
 1. From the repository root, run `make deploy-api`
 
+## TravisCI
+This repository include a `.travis.yml` file to test and deploy the component(s).
+Also included is a Travis-encrypted `credentials.tar.gz.enc` file ([described in this tutorial][GCloud Travis tutorial]). This contains:
+* `client-secret.json` (for service-account access to GCloud).
+
 [Git]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 [Google Cloud SDK]: https://cloud.google.com/sdk/docs/
 [Docker]: https://docs.docker.com/install/
+
+[GCloud Travis tutorial]: https://cloud.google.com/solutions/continuous-delivery-with-travis-ci
