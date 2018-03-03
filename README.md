@@ -4,6 +4,7 @@ Card games API
 ## Requirements
 
 * [Google Cloud SDK]
+* [Docker]
 
 ## Setup
 
@@ -15,3 +16,4 @@ Card games API
 1. From the repository root, run `make build-api`
 
 [Google Cloud SDK]: https://cloud.google.com/sdk/docs/
+[Docker]: https://docs.docker.com/install/
