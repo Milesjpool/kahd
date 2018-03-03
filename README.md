@@ -3,6 +3,7 @@ Card games API
 
 ## Requirements
 
+* [Git]
 * [Google Cloud SDK]
   *  Kubektl: `gcloud components install kubectl`
 * [Docker]
@@ -14,13 +15,12 @@ Card games API
 1. Login to Google Cloud CLI `gcloud auth login`
 1. In the kahd-api directory, run `./gradlew`
 
-## Building the project
+## Building & Deploying the API
 
 1. From the repository root, run `make build-api`
+1. Increment the API version in `kahd-api/VERSION`
+1. From the repository root, run `make deploy-api`
 
-## Pushing the project
-
-1. From the repository root, run `make push-api`
-
+[Git]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 [Google Cloud SDK]: https://cloud.google.com/sdk/docs/
 [Docker]: https://docs.docker.com/install/
