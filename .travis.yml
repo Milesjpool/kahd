@@ -32,6 +32,8 @@ before_script:
   - gcloud auth activate-service-account --key-file client-secret.json
 script:
   - gcloud --version
+  - which kubectl
+  - kubectl version
   - kubectl config view
   - echo -n -$TRAVIS_BUILD_NUMBER >> kahd-api/VERSION
   - make deploy-api
