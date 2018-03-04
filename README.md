@@ -17,6 +17,7 @@ Open-source card games web-service including:
 1. Install dependencies
 1. Login to Google Cloud CLI `gcloud auth login`
 1. In the kahd-api directory, run `./gradlew`
+1. Run `./kahd-api/setup-cluster.sh` to set-up a gcloud cluster
 
 ## Building & Deploying the API
 
