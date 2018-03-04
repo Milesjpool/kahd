@@ -22,11 +22,11 @@ before_install:
     - tar -xzf credentials.tar.gz
 install:
   - if [ ! -d "$HOME/kubectl/bin" ]; then
-      rm -rf $HOME/kubectl
-      curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/darwin/amd64/kubectl
+      rm -rf $HOME/kubectl;
+      curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/darwin/amd64/kubectl;
       chmod +x kubectl;
-      mkdir -p $HOME/kubectl/bin/
-      mv kubectl $HOME/kubectl/bin/
+      mkdir -p $HOME/kubectl/bin/;
+      mv kubectl $HOME/kubectl/bin/;
     fi
   - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then
       rm -rf $HOME/google-cloud-sdk;
