@@ -8,7 +8,7 @@ Open-source card games web-service including:
 
 * [Git]
 * [Google Cloud SDK]
-  *  Kubektl: `gcloud components install kubectl`
+  *  Kubectl: `gcloud components install kubectl`
 * [Docker]
 
 ## Setup
