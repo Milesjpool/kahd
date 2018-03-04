@@ -17,4 +17,4 @@ before_install:
 install:
 - gcloud config set project kahd-001
 script:
-- echo test
+- make deploy-api
