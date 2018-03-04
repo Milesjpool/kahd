@@ -39,12 +39,12 @@ script:
   - docker tag kahd-api $API_DOCKER_IMG
   - gcloud docker -- push $API_DOCKER_IMG
 
-  - kahd-api/setup-cluster.sh dev
+  - ./kahd-api/setup-cluster.sh dev
   - kubectl run kahd-api --image=$API_DOCKER_IMG --port 8080 || true
   - kubectl expose deployment kahd-api --type=LoadBalancer --port 80 --target-port 8080 || true
   - kubectl set image deployment/kahd-api kahd-api=$API_DOCKER_IMG
   - invalid command
-  - kahd-api/setup-cluster.sh prod
+  - ./kahd-api/setup-cluster.sh prod
   - kubectl run kahd-api --image=$API_DOCKER_IMG --port 8080 || true
   - kubectl expose deployment kahd-api --type=LoadBalancer --port 80 --target-port 8080 || true
   - kubectl set image deployment/kahd-api kahd-api=$API_DOCKER_IMG
