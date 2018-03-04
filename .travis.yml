@@ -33,4 +33,5 @@ before_script:
   - gcloud auth activate-service-account --key-file client-secret.json
 script:
   - gcloud --version
+  - echo "Travis-job:" $TRAVIS_JOB_ID
   - make deploy-api
