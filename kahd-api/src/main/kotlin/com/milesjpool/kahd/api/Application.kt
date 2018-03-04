@@ -20,7 +20,7 @@ fun main(args: Array<String>) {
     val server = embeddedServer(Netty, 8080) {
         routing {
             get("/") {
-                call.respondText("Hello, world!", ContentType.Text.Html)
+                call.respondText("Hello \uD83D\uDE48!", ContentType.Text.Html)
             }
             get("/version") {
                 call.respondText(buildProperties[version], ContentType.Text.Html)
