@@ -6,10 +6,6 @@ env:
 language: java
 services:
   - docker
-addons:
-  apt:
-    packages:
-    - kubectl
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
