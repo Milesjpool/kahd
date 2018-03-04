@@ -25,6 +25,7 @@ before_install:
 - gcloud auth activate-service-account --key-file client-secret.json
 install:
 - gcloud config set project kahd-001
+- gcloud components install kubectl
 
 script:
 - make deploy-api
