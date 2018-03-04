@@ -30,10 +30,12 @@ install:
 before_script:
   - gcloud config set project kahd-001
   - gcloud auth activate-service-account --key-file client-secret.json
-script:
   - gcloud --version
-  - which kubectl
   - kubectl version
+  - kubectl config view
+
+script:
+  - gcloud container clusters get-credentials kahd-api-cluster
   - kubectl config view
   - echo -n -$TRAVIS_BUILD_NUMBER >> kahd-api/VERSION
   - make deploy-api
