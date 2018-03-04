@@ -31,9 +31,12 @@ before_script:
   - gcloud config set project kahd-001
   - gcloud config set compute/zone europe-west2-a
   - gcloud auth activate-service-account --key-file client-secret.json
+  - export API_VERSION=`cat kahd-api/VERSION`-$TRAVIS_BUILD_NUMBER
+  - export API_DOCKER_TAG=eu.gcr.io/kahd-001/kahd-api:$API_VERSION
 
 script:
   - gcloud container clusters get-credentials kahd-api-cluster
-  - kubectl config view
-  - echo -n -$TRAVIS_BUILD_NUMBER >> kahd-api/VERSION
-  - make deploy-api
+  - make build-api
+  - docker tag kahd-api $API_DOCKER_TAG
+  - gcloud docker -- push $API_DOCKER_TAG
+  - kubectl set image deployment/kahd-api $API_DOCKER_TAG
