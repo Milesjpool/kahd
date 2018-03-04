@@ -30,9 +30,6 @@ install:
 before_script:
   - gcloud config set project kahd-001
   - gcloud auth activate-service-account --key-file client-secret.json
-  - gcloud --version
-  - kubectl version
-  - kubectl config view
 
 script:
   - gcloud container clusters get-credentials kahd-api-cluster
