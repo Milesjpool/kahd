@@ -29,6 +29,7 @@ install:
 
 before_script:
   - gcloud config set project kahd-001
+  - gcloud config set compute/zone europe-west2-a
   - gcloud auth activate-service-account --key-file client-secret.json
 
 script:
