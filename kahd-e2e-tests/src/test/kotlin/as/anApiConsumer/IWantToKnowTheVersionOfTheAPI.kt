@@ -25,6 +25,6 @@ class `IWantToKnowTheVersionOfTheAPI` {
             get(versionUrl).
         then().
             statusCode(200).
-            content(equalTo("0.1.4"))
+            content(equalTo(apiVersion))
     }
 }
