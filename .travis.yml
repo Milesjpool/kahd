@@ -31,8 +31,8 @@ before_script:
   - gcloud config set project kahd-001
   - gcloud config set compute/zone europe-west2-a
   - gcloud auth activate-service-account --key-file client-secret.json
-  - export API_VERSION=`cat kahd-api/VERSION`-$TRAVIS_BUILD_NUMBER
-  - export API_DOCKER_IMG=eu.gcr.io/kahd-001/kahd-api:$API_VERSION
+  - export API_VERSION=`cat kahd-api/VERSION`
+  - export API_DOCKER_IMG=eu.gcr.io/kahd-001/kahd-api:$API_VERSION-$TRAVIS_BUILD_NUMBER
 
 script:
   - make build-api
@@ -41,3 +41,4 @@ script:
   # Set the cluster to use the new image - TODO: aim to promote through dev to prod.
   - gcloud container clusters get-credentials kahd-api-cluster
   - kubectl set image deployment/kahd-api kahd-api=$API_DOCKER_IMG
+  - ./gradlew test -Denvironment=prod -Dapi_version=$API_VERSION
