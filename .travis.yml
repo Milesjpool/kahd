@@ -41,4 +41,5 @@ script:
   # Set the cluster to use the new image - TODO: aim to promote through dev to prod.
   - gcloud container clusters get-credentials kahd-api-cluster
   - kubectl set image deployment/kahd-api kahd-api=$API_DOCKER_IMG
-  - ./gradlew test -Denvironment=prod -Dapi_version=$API_VERSION
+  - cd kahd-e2e-tests && ./gradlew test -Denvironment=prod -Dapi_version=$API_VERSION
+  - pwd
