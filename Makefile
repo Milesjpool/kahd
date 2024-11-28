@@ -5,10 +5,13 @@ default:
 		"test-e2e"
 
 build:
-	echo "TODO: build"
+	go build ./cmd/api-server
 
-start-local: build
-	echo "TODO: start-local"
+start-local:
+	go run ./cmd/api-server
 
-test-e2e: 
-	echo "TODO: test-e2e"
+test-unit:
+	go test ./...
+
+test-e2e:
+	go run ./cmd/e2e-tests
