@@ -1,25 +1,23 @@
-api = kahd-api
-e2e-tests = kahd-e2e-tests
-
 default:
 	@echo "Options:\n"\
-		"build-api\n"\
+		"build\n"\
+		"start\n"\
 		"start-local\n"\
+		"test-unit\n"\
 		"test-e2e"
 
-build-api:
-	cd $(api) \
-	&& ./gradlew build \
-	&& docker build -t $(api) .
+build:
+	docker build -t kahd-api-server --target api-server .
 
-start-local: build-api
-	docker run -it -p 8080:8080 --rm $(api)
+start-local:
+	go run ./cmd/api-server
 
-start-local-detach:
-	$(eval api-container := $(shell docker run -d -p 8080:8080 --rm $(api)))
-	@echo $(api-container)
+start: build
+	docker run -p 8080:8080 api-server
 
-test-e2e: build-api start-local-detach
-	cd $(e2e-tests) \
-	&& ./gradlew test -Denvironment=local -Dapi_version=$(shell cat $(api)/VERSION) \
-	|| docker kill $(api-container)
+test-unit:
+	go test ./...
+
+test-e2e: build
+	docker build -t kahd-e2e-tests --target e2e-tests .
+	docker-compose -f docker-compose.e2e.yml up --abort-on-container-exit

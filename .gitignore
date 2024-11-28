@@ -1,16 +1,5 @@
 # Mac
-
 .DS_Store
 
-
-# IntelliJ
-
-*.iml
-.idea
-
-
-# Gradle
-
-.gradle
-build/
-out/
+# Visual Studio Code
+.vscode
