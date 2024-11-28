@@ -23,7 +23,14 @@ func main() {
 		resp, err := apiClient.Get("unknown")
 
 		assertions.NoErr(t, err, "error making request: %v", err)
-		assertions.Equals(t, http.StatusNotFound, resp.StatusCode, "expected status code 404")
+		assertions.Equals(t, http.StatusNotFound, resp.StatusCode)
+	})
+
+	t.Run("it retrieves API status", func(t *internal.TestContext) {
+		resp, err := apiClient.Get("status")
+
+		assertions.NoErr(t, err, "error making request: %v", err)
+		assertions.Equals(t, http.StatusOK, resp.StatusCode)
 	})
 
 	t.Close()

@@ -1,10 +1,17 @@
 package assertions
 
-import "e2e-tests/internal"
+import (
+	"e2e-tests/internal"
+	"fmt"
+)
 
-func Equals(t *internal.TestContext, expected, actual interface{}, msg string, msgArgs ...interface{}) {
+func Equals(t *internal.TestContext, expected, actual interface{}, msgArgs ...interface{}) {
 	if expected != actual {
-		t.Fail(msg, msgArgs...)
+		if len(msgArgs) == 0 {
+			t.Fail("expected: %v, got: %v", expected, actual)
+		} else {
+			t.Fail(fmt.Sprint(msgArgs[0]), msgArgs[1:]...)
+		}
 	}
 }
 

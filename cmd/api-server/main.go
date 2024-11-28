@@ -10,6 +10,7 @@ import (
 
 func main() {
 	http.HandleFunc("/", routes.NotFound)
+	http.HandleFunc("/status", routes.Status)
 
 	port := ":" + env.GetOrDefault("PORT", "8080")
 

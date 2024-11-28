@@ -10,13 +10,13 @@ type TestContext struct {
 }
 
 func (t *TestContext) Run(name string, f func(t *TestContext)) {
-	fmt.Printf("Running test: %s\n", name)
+	fmt.Printf("⏺ %s\n", name)
 	f(t)
 }
 
 func (t *TestContext) Fail(format string, args ...interface{}) {
 	t.failed = true
-	fmt.Printf(format, args...)
+	fmt.Printf("  × "+format+"\n", args...)
 }
 
 func (t TestContext) Failed() bool {
