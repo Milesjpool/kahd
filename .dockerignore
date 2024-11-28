@@ -1,0 +1,13 @@
+README.md
+License
+
+Dockerfile
+docker-compose.yml
+docker-compose.*.yml
+.dockerignore
+
+Makefile
+
+.vscode
+.git
+.gitignore
