@@ -19,6 +19,10 @@ func main() {
 	t := &internal.TestContext{}
 	apiClient := &api.Client{URL: "http://" + host}
 
+	t.Init(func(t *internal.TestContext) {
+		internal.WaitForServer(t, host, 5)
+	})
+
 	t.Run("it gets 404 for an unknown resource", func(t *internal.TestContext) {
 		resp, err := apiClient.Get("unknown")
 

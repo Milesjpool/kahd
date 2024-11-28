@@ -12,10 +12,10 @@ func main() {
 	http.HandleFunc("/", routes.NotFound)
 	http.HandleFunc("/status", routes.Status)
 
-	port := ":" + env.GetOrDefault("PORT", "8080")
+	port := env.GetOrDefault("PORT", "8080")
 
-	fmt.Println("Starting server on http://localhost" + port)
-	if err := http.ListenAndServe(port, nil); err != nil {
+	fmt.Println("Starting server on port: " + port)
+	if err := http.ListenAndServe(":"+port, nil); err != nil {
 		fmt.Println("Error starting server:", err)
 	}
 }

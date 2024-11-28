@@ -1,0 +1,30 @@
+services:
+  server:
+    image: kahd-api-server:latest
+    container_name: kahd-api-server
+    environment:
+      - PORT=8080
+    ports:
+      - "8080:8080"
+    networks:
+      - test-network
+    healthcheck:
+      test: [ "CMD", "wget", "--spider", "http://server:8080/status" ]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+  e2e-tests:
+    image: kahd-e2e-tests:latest
+    container_name: kahd-e2e-tests
+    depends_on:
+      server:
+        condition: service_healthy
+    environment:
+      - HOST=server:8080
+    networks:
+      - test-network
+
+networks:
+  test-network:
+    driver: bridge

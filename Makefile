@@ -18,5 +18,6 @@ start: build
 test-unit:
 	go test ./...
 
-test-e2e:
-	go run e2e-tests
+test-e2e: build
+	docker build -t kahd-e2e-tests --target e2e-tests .
+	docker-compose -f docker-compose.e2e.yml up --abort-on-container-exit
