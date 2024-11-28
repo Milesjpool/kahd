@@ -14,4 +14,4 @@ test-unit:
 	go test ./...
 
 test-e2e:
-	go run ./cmd/e2e-tests
+	go run e2e-tests

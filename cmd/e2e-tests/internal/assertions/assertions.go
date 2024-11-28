@@ -1,6 +1,6 @@
 package assertions
 
-import "github.com/milesjpool/kahd/cmd/e2e-tests/internal"
+import "e2e-tests/internal"
 
 func Equals(t *internal.TestContext, expected, actual interface{}, msg string, msgArgs ...interface{}) {
 	if expected != actual {

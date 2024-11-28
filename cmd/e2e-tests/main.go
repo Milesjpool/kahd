@@ -4,8 +4,9 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/milesjpool/kahd/cmd/e2e-tests/internal"
-	"github.com/milesjpool/kahd/cmd/e2e-tests/internal/assertions"
+	"e2e-tests/internal"
+	"e2e-tests/internal/assertions"
+
 	"github.com/milesjpool/kahd/pkg/api"
 )
 
