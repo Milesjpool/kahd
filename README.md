@@ -14,7 +14,9 @@ Open-source card games web-service including:
 ## Setup
 1. Clone this repository
 1. Login to Google Cloud CLI `gcloud auth login`
-1. Run `./scripts/setup-cluster.sh` to set-up a gcloud cluster
+    1.  Access or create the relevant project.
+1. Update `google_cloud/.env` as required for your project.
+1. Run `./google_cloud/setup.sh` to set-up a gcloud stack
 
 ## Building & Running the API locally
 1. From the repository root, run `make start-local`
