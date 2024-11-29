@@ -47,7 +47,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: server-image
-        path: /tmp/kahd-api-server.tar
+        path: /tmp
       
     - name: Load image
       run: |
