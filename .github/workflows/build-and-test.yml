@@ -24,6 +24,8 @@ jobs:
 
   unit-test:
     runs-on: ubuntu-latest
+    needs: set-env
+
     steps:
     - uses: actions/checkout@v4
     - name: Set up Go
@@ -53,13 +55,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Download artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: server-image
-        path: /tmp
-    - name: Load the server image
-      run: docker load --input /tmp/kahd-api-server.tar
     - name: 'Google Cloud Authentication'
       id: google-auth
       uses: 'google-github-actions/auth@v1'
