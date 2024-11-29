@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Milesjpool/kahd.svg?branch=master)](https://travis-ci.org/Milesjpool/kahd)
+[![Build and test](https://github.com/Milesjpool/kahd/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/Milesjpool/kahd/actions/workflows/build-and-test.yml)
 
 # kahd
 Open-source card games web-service including:
@@ -23,20 +23,14 @@ Open-source card games web-service including:
 1. Increment the API version in `kahd-api/VERSION` (if required)
 1. Push changes to master and [Travis][TravisCI build] will take it from there.
 
-## TravisCI
-This repository include a `.travis.yml` file to test and deploy the component(s).
-Also included is a Travis-encrypted `credentials.tar.gz.enc` file ([described in this tutorial][GCloud Travis tutorial]). This contains:
-* `client-secret.json` (for service-account access to GCloud).
+## Github Actions
+This repository include a `.gihub/workflows` directory for testing and deploy the component(s).
 
 ## Useful resources
 * [Setting up a containerised web-app in GCloud][Containerised web-app tutorial]
-* [Integrating TravisCI with GCloud][GCloud Travis Tutorial]
 
 [Git]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 [Google Cloud SDK]: https://cloud.google.com/sdk/docs/
 [Docker]: https://docs.docker.com/install/
 
-[TravisCI build]: https://travis-ci.org/Milesjpool/kahd
-
-[GCloud Travis tutorial]: https://cloud.google.com/solutions/continuous-delivery-with-travis-ci
 [Containerised web-app tutorial]: https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app
