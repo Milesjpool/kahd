@@ -16,15 +16,8 @@ env:
   IMAGE_REGISTRY: "docker-images"
 
 jobs:
-  set-env:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Set commit hash as build-tag
-      run: echo "BUILD_TAG=$(git rev-parse --short "$GITHUB_SHA")" >> $GITHUB_ENV
-
   unit-test:
     runs-on: ubuntu-latest
-    needs: set-env
 
     steps:
     - uses: actions/checkout@v4
@@ -72,10 +65,14 @@ jobs:
         password: '${{ steps.google-auth.outputs.access_token }}'
         registry: '${{ env.ENVIRONMENT }}-docker.pkg.dev'
 
+    - name: Get build-tag
+      id: get-tag
+      run: echo ::set-output name=short_ref::$(git rev-parse --short "$GITHUB_SHA")
+
     - name: Push server image
       uses: docker/build-push-action@v6
       with:
         push: true
         tags: |
-            ${{ env.ENVIRONMENT }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_REGISTRY }}/${{ env.SERVER_IMAGE }}:${{ env.BUILD_TAG }}
             ${{ env.ENVIRONMENT }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_REGISTRY }}/${{ env.SERVER_IMAGE }}:latest
+            ${{ env.ENVIRONMENT }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_REGISTRY }}/${{ env.SERVER_IMAGE }}:${{ steps.get-tag.outputs.short_ref }}
