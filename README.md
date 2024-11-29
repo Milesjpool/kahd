@@ -20,8 +20,7 @@ Open-source card games web-service including:
 1. From the repository root, run `make start-local`
 
 ## Deploying the API
-1. Increment the API version in `kahd-api/VERSION` (if required)
-1. Push changes to master and [Travis][TravisCI build] will take it from there.
+1. Push changes to main and [GitHub Actions][GitHub Actions Build] will take it from there.
 
 ## Github Actions
 This repository include a `.gihub/workflows` directory for testing and deploy the component(s).
@@ -32,5 +31,5 @@ This repository include a `.gihub/workflows` directory for testing and deploy th
 [Git]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 [Google Cloud SDK]: https://cloud.google.com/sdk/docs/
 [Docker]: https://docs.docker.com/install/
-
+[GitHub Actions Build]: https://github.com/Milesjpool/kahd/actions/workflows/build-and-test.yml
 [Containerised web-app tutorial]: https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app
