@@ -76,3 +76,8 @@ jobs:
         tags: |
             ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_REGISTRY }}/${{ env.SERVER_IMAGE }}:latest
             ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_REGISTRY }}/${{ env.SERVER_IMAGE }}:${{ steps.get-tag.outputs.short_ref }}
+
+    - name: Update instance
+      run: |
+        gcloud compute instances update-container kahd-api-server \
+          --container-image=${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_REGISTRY }}/${{ env.SERVER_IMAGE }}:${{ steps.get-tag.outputs.short_ref }}
