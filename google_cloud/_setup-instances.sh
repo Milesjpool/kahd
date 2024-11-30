@@ -20,4 +20,11 @@ gcloud compute instances create-with-container $INSTANCE \
     --instance-termination-action=STOP \
     --reservation-affinity=any
 
-  
+gcloud compute instances add-iam-policy-binding $INSTANCE \
+    --zone "$AVAILABILITY_ZONE" \
+    --role=roles/compute.instanceAdmin.v1 \
+    --member="serviceAccount:$ACTIONS_SERVICE_ACCOUNT_EMAIL"
+
+gcloud iam service-accounts add-iam-policy-binding $COMPUTE_SERVICE_ACCOUNT_EMAIL \
+    --role=roles/iam.serviceAccountUser \
+    --member="serviceAccount:$ACTIONS_SERVICE_ACCOUNT_EMAIL"
