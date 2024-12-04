@@ -1,8 +1,9 @@
-[![Build and test](https://github.com/Milesjpool/kahd/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/Milesjpool/kahd/actions/workflows/build-and-test.yml?branch=main)
+[![Build and test](https://github.com/Milesjpool/kahd/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/Milesjpool/kahd/actions/workflows/build-and-test.yml)
+[![Smoke test](https://github.com/Milesjpool/kahd/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/Milesjpool/kahd/actions/workflows/smoke-test.yml)
 
 # kahd
 Open-source card games web-service including:
-* API-server (WIP)
+* [API web-server][Kahd API] (WIP)
 * GoLang API client
 
 ## Requirements
@@ -30,6 +31,7 @@ This repository include a `.gihub/workflows` directory for testing and deploy th
 ## Useful resources
 * [Setting up a containerised web-app in GCloud][Containerised web-app tutorial]
 
+[Kahd API]: http://api.kahd.milesjpool.com
 [Git]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 [Google Cloud SDK]: https://cloud.google.com/sdk/docs/
 [Docker]: https://docs.docker.com/install/
