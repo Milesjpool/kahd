@@ -1,4 +1,4 @@
-[![Build and test](https://github.com/Milesjpool/kahd/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/Milesjpool/kahd/actions/workflows/build-and-test.yml)
+[![Build and test](https://github.com/Milesjpool/kahd/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/Milesjpool/kahd/actions/workflows/build-and-test.yml?branch=main)
 
 # kahd
 Open-source card games web-service including:
