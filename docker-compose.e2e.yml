@@ -1,18 +1,41 @@
 services:
+  database:
+    image: postgres:17-alpine
+    container_name: kahd-database
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - 5432
+    networks:
+      - test-network
+    healthcheck:
+      test: pg_isready -U postgres -d postgres -h database
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+
   server:
     image: kahd-api-server:latest
     container_name: kahd-api-server
+    depends_on:
+      database:
+        condition: service_healthy
     environment:
       - PORT=8080
+      - DATABASE_CONNECTION_STRING=postgres://postgres:postgres@database:5432/postgres
     ports:
       - "8080:8080"
     networks:
       - test-network
     healthcheck:
       test: [ "CMD", "wget", "--spider", "http://server:8080/status" ]
-      interval: 5s
+      interval: 30s
       timeout: 10s
       retries: 5
+      start_period: 5s
 
   e2e-tests:
     image: kahd-e2e-tests:latest
