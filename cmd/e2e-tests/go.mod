@@ -1,4 +1,4 @@
-module e2e-tests
+module github.com/milesjpool/kahd/e2e-tests
 
 go 1.23.1
 

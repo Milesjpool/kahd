@@ -1,13 +1,10 @@
 package main
 
 import (
-	"net/http"
 	"os"
 
-	"e2e-tests/internal"
-	"e2e-tests/internal/assertions"
-
-	"github.com/milesjpool/kahd/pkg/api"
+	"github.com/milesjpool/kahd/e2e-tests/internal"
+	"github.com/milesjpool/kahd/e2e-tests/test_suites"
 )
 
 func main() {
@@ -17,25 +14,18 @@ func main() {
 	}
 
 	t := &internal.TestContext{}
-	apiClient := &api.Client{URL: "http://" + host}
 
 	t.Init(func(t *internal.TestContext) {
 		internal.WaitForServer(t, host, 5)
 	})
+	defer t.Close()
 
-	t.Run("it gets 404 for an unknown resource", func(t *internal.TestContext) {
-		resp, err := apiClient.Get("unknown")
+	suites := []internal.TestSuite{
+		&test_suites.GolangClientTestSuite{Host: host},
+		&test_suites.WebApiTestSuite{URL: host},
+	}
 
-		assertions.NoErr(t, err, "error making request: %v", err)
-		assertions.Equals(t, http.StatusNotFound, resp.StatusCode)
-	})
-
-	t.Run("it retrieves API status", func(t *internal.TestContext) {
-		resp, err := apiClient.Get("status")
-
-		assertions.NoErr(t, err, "error making request: %v", err)
-		assertions.Equals(t, http.StatusOK, resp.StatusCode)
-	})
-
-	t.Close()
+	for _, suite := range suites {
+		suite.Run(t)
+	}
 }

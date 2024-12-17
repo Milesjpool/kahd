@@ -1,8 +1,9 @@
 package assertions
 
 import (
-	"e2e-tests/internal"
 	"fmt"
+
+	"github.com/milesjpool/kahd/e2e-tests/internal"
 )
 
 func Equals(t *internal.TestContext, expected, actual interface{}, msgArgs ...interface{}) {
