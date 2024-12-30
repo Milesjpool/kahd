@@ -19,6 +19,7 @@ func TestStatus(t *testing.T) {
 
 		assert.Equal(t, http.StatusOK, rr.Code)
 		assert.JSONEq(t, `{}`, rr.Body.String())
+		assert.Equal(t, "application/json", rr.Header().Get("Content-Type"))
 	})
 
 	t.Run("it returns a 200 status when there are checks", func(t *testing.T) {
@@ -38,5 +39,6 @@ func TestStatus(t *testing.T) {
 
 		assert.Equal(t, http.StatusOK, rr.Code)
 		assert.JSONEq(t, `{"database_connection":"healthy","another_check":"unhealthy"}`, rr.Body.String())
+		assert.Equal(t, "application/json", rr.Header().Get("Content-Type"))
 	})
 }

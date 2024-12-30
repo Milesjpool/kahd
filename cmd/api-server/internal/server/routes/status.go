@@ -17,6 +17,7 @@ func Status(w http.ResponseWriter, r *http.Request, ctx status.Context) {
 		}
 	}
 
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	response.WriteJson(status, w)
 }

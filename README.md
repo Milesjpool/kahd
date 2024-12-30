@@ -1,3 +1,6 @@
+![image](https://github.com/user-attachments/assets/72d61069-f0cf-443d-940d-1c5bdeff490f)
+
+
 [![Build and test](https://github.com/Milesjpool/kahd/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/Milesjpool/kahd/actions/workflows/build-and-test.yml)
 [![Smoke test](https://github.com/Milesjpool/kahd/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/Milesjpool/kahd/actions/workflows/smoke-test.yml)
 
