@@ -10,14 +10,14 @@ import (
 var expectedPort = "123123123"
 var expectedDBConnection = "my-db-connection-string"
 
-func setupTest(t *testing.T) *APIConfigLoader {
-	t.Helper()
-	os.Setenv(DATABASE_CONNECTION_STRING_KEY, expectedDBConnection)
-	os.Setenv(PORT_KEY, expectedPort)
-	return &APIConfigLoader{}
-}
+func Test_EnvConfigLoader(t *testing.T) {
 
-func Test_loadConfig(t *testing.T) {
+	setupTest := func(t *testing.T) *EnvConfigLoader {
+		t.Helper()
+		os.Setenv(DATABASE_CONNECTION_STRING_KEY, expectedDBConnection)
+		os.Setenv(PORT_KEY, expectedPort)
+		return &EnvConfigLoader{}
+	}
 
 	t.Run("it retrieves config from env", func(t *testing.T) {
 		it := setupTest(t)

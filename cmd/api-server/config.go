@@ -10,14 +10,14 @@ var DATABASE_CONNECTION_STRING_KEY = "DATABASE_CONNECTION_STRING"
 var PORT_KEY = "PORT"
 var DEFAULT_PORT = "8080"
 
-type APIConfigLoader struct{}
+type EnvConfigLoader struct{}
 
 type APIConfig struct {
 	Port         string
 	DBConnection string
 }
 
-func (c *APIConfigLoader) Load() (APIConfig, error) {
+func (c *EnvConfigLoader) Load() (APIConfig, error) {
 	dbConnection, err := env.Get(DATABASE_CONNECTION_STRING_KEY)
 	if err != nil {
 		return APIConfig{}, fmt.Errorf("failed to get database URL: %w", err)
