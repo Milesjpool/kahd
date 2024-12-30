@@ -26,5 +26,7 @@ test-unit:
 test-integration:
 	docker-compose -f docker-compose.integration.yml up --build --abort-on-container-exit
 
+test-e2e:
+	docker-compose -f docker-compose.e2e.yml up --build --abort-on-container-exit
 
 .PHONY: test-unit test-integration test-e2e

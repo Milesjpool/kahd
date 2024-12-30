@@ -18,8 +18,9 @@ services:
       start_period: 5s
 
   server:
-    image: kahd-api-server:latest
-    container_name: kahd-api-server
+    build:
+      context: .
+      target: api-server
     depends_on:
       database:
         condition: service_healthy
@@ -38,8 +39,9 @@ services:
       start_period: 5s
 
   e2e-tests:
-    image: kahd-e2e-tests:latest
-    container_name: kahd-e2e-tests
+    build:
+      context: .
+      target: e2e-tests
     depends_on:
       server:
         condition: service_healthy
