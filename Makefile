@@ -8,9 +8,6 @@ default:
 
 build-server:
 	docker build -t kahd-api-server --target api-server .
-ifdef TAG
-	docker tag kahd-api-server kahd-api-server:$(TAG)
-endif
 
 build-e2e-tests:
 	docker build -t kahd-e2e-tests --target e2e-tests .
