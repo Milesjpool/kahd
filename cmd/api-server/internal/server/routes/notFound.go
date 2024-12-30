@@ -3,7 +3,7 @@ package routes
 import (
 	"net/http"
 
-	"github.com/milesjpool/kahd/cmd/api-server/internal/response"
+	"github.com/milesjpool/kahd/cmd/api-server/internal/server/response"
 )
 
 func NotFound(w http.ResponseWriter, r *http.Request) {

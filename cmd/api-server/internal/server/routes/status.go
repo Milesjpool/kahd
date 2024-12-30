@@ -3,8 +3,8 @@ package routes
 import (
 	"net/http"
 
-	"github.com/milesjpool/kahd/cmd/api-server/internal/response"
-	"github.com/milesjpool/kahd/cmd/api-server/internal/routes/status"
+	"github.com/milesjpool/kahd/cmd/api-server/internal/server/response"
+	"github.com/milesjpool/kahd/cmd/api-server/internal/server/routes/status"
 )
 
 func Status(w http.ResponseWriter, r *http.Request, ctx status.Context) {
