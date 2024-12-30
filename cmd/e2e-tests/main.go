@@ -19,6 +19,7 @@ func main() {
 	defer t.Close()
 
 	suites := []internal.TestSuite{
+		&test_suites.GolangClientTestSuite{Host: host},
 		&test_suites.WebApiTestSuite{URL: fmt.Sprintf("http://%s", host)},
 	}
 
