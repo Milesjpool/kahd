@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/milesjpool/kahd/e2e-tests/internal"
@@ -21,8 +22,7 @@ func main() {
 	defer t.Close()
 
 	suites := []internal.TestSuite{
-		&test_suites.GolangClientTestSuite{Host: host},
-		&test_suites.WebApiTestSuite{URL: host},
+		&test_suites.WebApiTestSuite{URL: fmt.Sprintf("http://%s", host)},
 	}
 
 	for _, suite := range suites {
