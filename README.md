@@ -4,7 +4,6 @@
 # kahd
 Open-source card games web-service including:
 * [API web-server][Kahd API] (WIP)
-* GoLang API client
 
 ## Requirements
 * [Git]
