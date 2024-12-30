@@ -1,8 +1,6 @@
 package api
 
 import (
-	"encoding/json"
-
 	"github.com/go-resty/resty/v2"
 	"github.com/milesjpool/kahd/internal/model"
 )
@@ -18,14 +16,10 @@ func NewClient(host string) *client {
 }
 
 func (c *client) Status() (*model.Status, error) {
-	resp, err := c.restClient.R().Get(c.host + "/status")
+	resp, err := c.restClient.R().SetResult(&model.Status{}).Get(c.host + "/status")
 	if err != nil {
 		return nil, err
 	}
 
-	status := &model.Status{}
-	if err := json.Unmarshal(resp.Body(), status); err != nil {
-		return nil, err
-	}
-	return status, nil
+	return resp.Result().(*model.Status), nil
 }
