@@ -9,7 +9,7 @@ import (
 
 var unreachableDatabase = "postgres://abc:def@unknown:123/db"
 
-func TestPostgresDatabaseConnector_Connect(t *testing.T) {
+func TestPostgresDatabaseConnector(t *testing.T) {
 	t.Run("it returns an error if the database is not reachable", func(t *testing.T) {
 		connector := &PostgresDatabaseConnector{}
 		db, err := connector.Connect(unreachableDatabase)
