@@ -17,5 +17,6 @@ func TestNotFound(t *testing.T) {
 
 		assert.Equal(t, http.StatusNotFound, rr.Code)
 		assert.JSONEq(t, `{"error":"not found"}`, rr.Body.String())
+		assert.Equal(t, "application/json", rr.Header().Get("Content-Type"))
 	})
 }
