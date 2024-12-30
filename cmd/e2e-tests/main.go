@@ -2,17 +2,14 @@ package main
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/milesjpool/kahd/e2e-tests/internal"
 	"github.com/milesjpool/kahd/e2e-tests/test_suites"
+	"github.com/milesjpool/kahd/internal/env"
 )
 
 func main() {
-	host := os.Getenv("HOST")
-	if host == "" {
-		host = "localhost:8080"
-	}
+	host := env.GetOrDefault("HOST", "localhost:8080")
 
 	t := &internal.TestContext{}
 
