@@ -11,7 +11,7 @@ services:
     networks:
       - test-network
     healthcheck:
-      test: pg_isready -U postgres -d postgres -h database
+      test: pg_isready -U postgres -d postgres
       interval: 10s
       timeout: 3s
       retries: 5
