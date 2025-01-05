@@ -1,5 +1,6 @@
 #!/bin/bash
 source "$(dirname "$0")/.env"
+source "$(dirname "$0")/.env.secret"
 
 gcloud config set project $PROJECT_ID
 
