@@ -19,10 +19,13 @@ var ErrDatabaseNotReachable = errors.New("database not reachable")
 func (f *PostgresDatabaseConnector) Connect(connectionString string) (Database, error) {
 	if db, err := sql.Open("postgres", connectionString); err != nil {
 		return nil, ErrConnectionFailed
-	} else if err := db.Ping(); err != nil {
-		return nil, ErrDatabaseNotReachable
 	} else {
-		return &PostgresDatabase{db: db}, nil
+		postgresDb := &PostgresDatabase{db: db}
+		if err := postgresDb.Ping(); err != nil {
+			return postgresDb, ErrDatabaseNotReachable
+		} else {
+			return postgresDb, nil
+		}
 	}
 }
 
