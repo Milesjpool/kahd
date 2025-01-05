@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/milesjpool/kahd/cmd/api-server/internal/database"
+	"github.com/milesjpool/kahd/cmd/api-server/internal/logging"
 	"github.com/milesjpool/kahd/cmd/api-server/internal/server"
 	"github.com/stretchr/testify/assert"
 )
@@ -137,6 +138,20 @@ func TestAPIServer_Start(t *testing.T) {
 		}
 		err := server.Start()
 		assert.ErrorIs(t, err, expectedErr)
+	})
+
+	t.Run("it doesn't error if the database is temporarily unreachable", func(t *testing.T) {
+		expectedErr := database.ErrDatabaseNotReachable
+		logger := &logging.MockLogger{}
+		server := &APIServer{
+			ConfigLoader:      &mockConfigLoader{},
+			DatabaseConnector: &mockDatabaseConnector{err: expectedErr},
+			ServerFactory:     &mockServerFactory{},
+			Logger:            logger,
+		}
+		err := server.Start()
+		assert.NoError(t, err)
+		assert.Len(t, logger.ErrorLogs, 1)
 	})
 
 	t.Run("it starts the server with the loaded config", func(t *testing.T) {

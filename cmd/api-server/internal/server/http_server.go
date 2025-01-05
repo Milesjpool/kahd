@@ -38,7 +38,7 @@ func (f *HTTPServerFactory) NewServer(props HTTPServerProps) Server {
 			Handler: mux,
 		},
 		beforeStart: func() {
-			f.Logger.Info("Starting server at: " + props.Port)
+			f.Logger.Info("Starting server at: %s", props.Port)
 		},
 	}
 }

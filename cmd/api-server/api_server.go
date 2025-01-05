@@ -1,9 +1,11 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/milesjpool/kahd/cmd/api-server/internal/database"
+	"github.com/milesjpool/kahd/cmd/api-server/internal/logging"
 	"github.com/milesjpool/kahd/cmd/api-server/internal/server"
 )
 
@@ -21,6 +23,7 @@ type APIServer struct {
 	ConfigLoader      Loader[APIConfig]
 	DatabaseConnector Connector[database.Database]
 	ServerFactory     ServerFactory[server.HTTPServerProps]
+	Logger            logging.Logger
 }
 
 func (s *APIServer) Start() error {
@@ -30,8 +33,10 @@ func (s *APIServer) Start() error {
 	}
 
 	db, err := s.DatabaseConnector.Connect(config.DBConnection)
-	if err != nil {
-		return fmt.Errorf("failed to connect to database: %w", err)
+	if errors.Is(err, database.ErrDatabaseNotReachable) {
+		s.Logger.Error("database not currently reachable. Error: %w", err)
+	} else if err != nil {
+		return fmt.Errorf("failed to initialize database connection: %w", err)
 	}
 	defer db.Close()
 

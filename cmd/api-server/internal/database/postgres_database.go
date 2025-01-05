@@ -2,7 +2,7 @@ package database
 
 import (
 	"database/sql"
-	"fmt"
+	"errors"
 
 	_ "github.com/lib/pq"
 )
@@ -13,11 +13,14 @@ type PostgresDatabase struct {
 	db *sql.DB
 }
 
+var ErrConnectionFailed = errors.New("failed to create database connection")
+var ErrDatabaseNotReachable = errors.New("database not reachable")
+
 func (f *PostgresDatabaseConnector) Connect(connectionString string) (Database, error) {
 	if db, err := sql.Open("postgres", connectionString); err != nil {
-		return nil, fmt.Errorf("failed to create database connection: %w", err)
+		return nil, ErrConnectionFailed
 	} else if err := db.Ping(); err != nil {
-		return nil, fmt.Errorf("failed to connect to database: %w", err)
+		return nil, ErrDatabaseNotReachable
 	} else {
 		return &PostgresDatabase{db: db}, nil
 	}

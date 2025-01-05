@@ -9,11 +9,13 @@ import (
 	"github.com/milesjpool/kahd/cmd/api-server/internal/server"
 )
 
+var Logger logging.Logger = &logging.StdIOLogger{}
 var service server.Server = &APIServer{
+	Logger:            Logger,
 	ConfigLoader:      &EnvConfigLoader{},
 	DatabaseConnector: &database.PostgresDatabaseConnector{},
 	ServerFactory: &server.HTTPServerFactory{
-		Logger: &logging.StdIOLogger{},
+		Logger: Logger,
 	},
 }
 

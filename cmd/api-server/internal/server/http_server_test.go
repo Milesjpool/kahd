@@ -6,6 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/milesjpool/kahd/cmd/api-server/internal/logging"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -19,14 +20,6 @@ func (m *mockDatabase) Ping() error {
 
 func (m *mockDatabase) Close() error {
 	return nil
-}
-
-type mockLogger struct {
-	InfoCalls []string
-}
-
-func (m *mockLogger) Info(message string) {
-	m.InfoCalls = append(m.InfoCalls, message)
 }
 
 func TestHTTPServerFactory_NewServer(t *testing.T) {
@@ -99,7 +92,7 @@ func TestHTTPServerFactory_NewServer(t *testing.T) {
 	})
 
 	t.Run("it logs the server starting in the beforeStart function", func(t *testing.T) {
-		logger := &mockLogger{}
+		logger := &logging.MockLogger{}
 
 		factory := &HTTPServerFactory{Logger: logger}
 		server := factory.NewServer(HTTPServerProps{
@@ -109,7 +102,7 @@ func TestHTTPServerFactory_NewServer(t *testing.T) {
 
 		server.(*httpServerAdapter).beforeStart()
 
-		assert.Contains(t, logger.InfoCalls, "Starting server at: 8080")
+		assert.Contains(t, logger.InfoLogs, "Starting server at: 8080")
 	})
 }
 
