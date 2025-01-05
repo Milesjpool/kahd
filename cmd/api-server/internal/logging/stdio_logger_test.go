@@ -2,6 +2,7 @@ package logging
 
 import (
 	"bytes"
+	"errors"
 	"os"
 	"testing"
 
@@ -56,6 +57,18 @@ func TestStdIOLogger(t *testing.T) {
 		logger := &StdIOLogger{}
 		logOutput, errOutput := captureStdIO(func() {
 			logger.Error(message)
+		})
+
+		assert.Equal(t, "", logOutput)
+		assert.Equal(t, expectedOutput, errOutput)
+	})
+
+	t.Run("it formats provided error message to stderr", func(t *testing.T) {
+		expectedOutput := "[ERROR] Hello, world!\n"
+
+		logger := &StdIOLogger{}
+		logOutput, errOutput := captureStdIO(func() {
+			logger.Error("Hello, %s!", errors.New("world"))
 		})
 
 		assert.Equal(t, "", logOutput)

@@ -34,7 +34,7 @@ func (s *APIServer) Start() error {
 
 	db, err := s.DatabaseConnector.Connect(config.DBConnection)
 	if errors.Is(err, database.ErrDatabaseNotReachable) {
-		s.Logger.Error("database not currently reachable. Error: %w", err)
+		s.Logger.Error("database not currently reachable. Error: %s", err)
 	} else if err != nil {
 		return fmt.Errorf("failed to initialize database connection: %w", err)
 	}
