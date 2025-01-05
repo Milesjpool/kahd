@@ -6,10 +6,14 @@ INSTANCE="kahd-api-server"
 IMAGE="${LOCATION}-docker.pkg.dev/${PROJECT_ID}/${DOCKER_REPOSITORY}/kahd-api-server:none"
 AVAILABILITY_ZONE="$LOCATION-a"
 
+# get the database connection string from the secret
+DATABASE_CONNECTION_STRING=$(gcloud secrets versions access latest --secret='kahd-db-connection-string')
+
 gcloud compute instances create-with-container $INSTANCE \
     --project $PROJECT_ID \
     --container-image=$IMAGE \
     --container-env="PORT=80" \
+    --container-env="DATABASE_CONNECTION_STRING=$DATABASE_CONNECTION_STRING" \
     --zone "$AVAILABILITY_ZONE" \
     --machine-type=e2-micro \
     --boot-disk-size 10GB \
