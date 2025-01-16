@@ -23,6 +23,10 @@ func (t *TestContext) Run(name string, f func(t *TestContext)) {
 	f(t)
 }
 
+func (t *TestContext) Skip(name string, _ ...interface{}) {
+	fmt.Printf("○ %s [SKIPPED]\n", name)
+}
+
 func (t *TestContext) Fail(format string, args ...interface{}) {
 	t.failed = true
 	fmt.Printf("  × "+format+"\n", args...)

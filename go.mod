@@ -3,6 +3,7 @@ module github.com/milesjpool/kahd
 go 1.23.1
 
 require (
+	github.com/go-resty/resty/v2 v2.16.2
 	github.com/lib/pq v1.10.9
 	github.com/stretchr/testify v1.10.0
 )
